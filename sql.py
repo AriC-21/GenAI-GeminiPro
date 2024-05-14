@@ -16,7 +16,7 @@ def get_gemini_response(question, prompt):
     return response.text
 
 def read_sql_query(sql_query,db):
-    conn = sqlite3.connect(db)
+    conn = sqlite3.connect('students.db')
     cur = conn.cursor()
     cur.execute(sql_query)
     rows = cur.fetchall()
@@ -52,7 +52,7 @@ if submit:
     # else:
     #     st.write("Please ask a valid SQL question")
     st.subheader("The Response is: ")
-    rows = read_sql_query(response,'students.db')
+    rows = read_sql_query(response)
     for row in rows:
         print(row)
         st.write_stream(row)

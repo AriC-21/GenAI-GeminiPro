@@ -54,4 +54,4 @@ if submit:
     rows = read_sql_query(response,'students.db')
     for row in rows:
         print(row)
-        st.header(row)
+        st.write_stream(row)

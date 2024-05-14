@@ -44,6 +44,7 @@ submit = st.button("Ask the Question")
 
 if submit:
     response = get_gemini_response(question,prompt)
+    print(response)
     # st.write(response)
     # if "sql" in response:
     #     st.write("Executing the SQL Query")

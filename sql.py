@@ -36,7 +36,7 @@ prompt = [
     """
 ]
 
-st.set_page_config(page_title="SQL Query Generator")
+# st.set_page_config(page_title="SQL Query Generator")
 st.header("Gemini App to Retrieve SQL Data")
 
 question = st.text_input("Input: ",key='input')

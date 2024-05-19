@@ -8,7 +8,7 @@ Create table STUDENTS(NAME VARCHAR(25), CLASS VARCHAR(25),
 SECTION VARCHAR(25));
 """
 
-curser.execute(table_info)
+# curser.execute(table_info)
 
 curser.execute("INSERT INTO STUDENTS VALUES('Ari', 'Gen AI', 'A')")
 curser.execute("INSERT INTO STUDENTS VALUES('Sudipta', 'WebD', 'B')")
@@ -21,3 +21,6 @@ print("The inserted records are:\n")
 data = curser.execute("SELECT * FROM STUDENTS")
 for row in data:
     print(row)
+
+connection.commit()
+connection.close()

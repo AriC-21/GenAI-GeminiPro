@@ -4,10 +4,10 @@ load_dotenv()
 import streamlit as st
 import os
 import sqlite3
+import pandas as pd
 
 import google.generativeai as genai
 ## Configure GenAI key
-os.environ["GOOGLE_API_KEY"] == st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 def get_gemini_response(question, prompt):
@@ -24,6 +24,9 @@ def read_sql_query(sql_query,db):
         print(row)
     return rows
 
+def convert_rows_to_df(rows):
+    df = pd.DataFrame(rows,index=None,columns=None)
+    return df
 prompt = [
     """
     You are an expert in converting English queries to SQL queries!
@@ -52,7 +55,6 @@ if submit:
     # else:
     #     st.write("Please ask a valid SQL question")
     st.subheader("The Response is: ")
-    rows = read_sql_query(response)
-    for row in rows:
-        print(row)
-        st.write_stream(row)
+    rows = read_sql_query(response,'students.db')
+    df = convert_rows_to_df(rows)
+    st.table(df)
